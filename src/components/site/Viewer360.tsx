@@ -46,7 +46,7 @@ export function Viewer360({ image, alt }: { image: string; alt: string }) {
   useEffect(() => {
     const up = () => setDragging(false);
     const move = (e: MouseEvent) => onMove(e.clientX);
-    const tmove = (e: TouchEvent) => onMove(e.touches[0].clientX);
+    const tmove = (e: TouchEvent) => onMove(e.touches[0]?.clientX ?? 0);
     window.addEventListener("mouseup", up);
     window.addEventListener("touchend", up);
     window.addEventListener("mousemove", move);
@@ -69,7 +69,7 @@ export function Viewer360({ image, alt }: { image: string; alt: string }) {
         role="img"
         aria-label={`${alt} — drag to rotate`}
         onMouseDown={(e) => onDown(e.clientX)}
-        onTouchStart={(e) => onDown(e.touches[0].clientX)}
+        onTouchStart={(e) => onDown(e.touches[0]?.clientX ?? 0)}
         className={`relative flex aspect-square touch-none select-none items-center justify-center ${
           dragging ? "cursor-grabbing" : "cursor-grab"
         }`}

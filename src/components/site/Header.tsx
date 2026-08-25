@@ -34,6 +34,7 @@ export function Header() {
       return () => clearTimeout(t);
     }
     prevCount.current = count;
+    return undefined;
   }, [count]);
 
   useEffect(() => setOpen(false), [pathname]);
