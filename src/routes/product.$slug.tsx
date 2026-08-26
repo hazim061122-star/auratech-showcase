@@ -38,6 +38,12 @@ export const Route = createFileRoute("/product/$slug")({
 
 function ProductDetail() {
   const { product } = Route.useLoaderData();
+  // Remount on slug change so all local state (color, qty, gallery) resets
+  return <ProductDetailView key={product.slug} />;
+}
+
+function ProductDetailView() {
+  const { product } = Route.useLoaderData();
   const { add } = useCart();
   const [color, setColor] = useState(product.colors[0]!);
   const [qty, setQty] = useState(1);
