@@ -71,8 +71,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
       return [{ product, qty: l.qty, color: l.color, lineTotal: product.price * l.qty }];
     });
     const subtotal = detailed.reduce((sum, l) => sum + l.lineTotal, 0);
-    const shipping = subtotal === 0 || subtotal >= 250 ? 0 : 12;
-    const tax = Math.round(subtotal * 0.08);
+    const shipping = subtotal === 0 || subtotal >= 500 ? 0 : 15;
+    const tax = Math.round(subtotal * 0.06);
     return {
       lines,
       detailed,

@@ -32,8 +32,8 @@ export const products: Product[] = [
     name: "Pulse Air Pro",
     tagline: "Adaptive ANC earbuds with spatial audio",
     category: "Audio",
-    price: 219,
-    compareAt: 259,
+    price: 549,
+    compareAt: 649,
     rating: 4.8,
     reviews: 1284,
     badge: "Best seller",
@@ -62,7 +62,7 @@ export const products: Product[] = [
     name: "Chrono X1",
     tagline: "Titanium smartwatch with always-on AMOLED",
     category: "Wearables",
-    price: 389,
+    price: 1099,
     rating: 4.7,
     reviews: 842,
     badge: "New",
@@ -87,8 +87,8 @@ export const products: Product[] = [
     name: "Sonic Drum 360",
     tagline: "Omnidirectional speaker with reactive light ring",
     category: "Audio",
-    price: 179,
-    compareAt: 199,
+    price: 349,
+    compareAt: 429,
     rating: 4.6,
     reviews: 517,
     image: speaker,
@@ -112,7 +112,7 @@ export const products: Product[] = [
     name: "Voltcore 140",
     tagline: "140W GaN power bank for laptops and phones",
     category: "Power",
-    price: 129,
+    price: 299,
     rating: 4.5,
     reviews: 393,
     image: charger,
@@ -136,7 +136,7 @@ export const products: Product[] = [
     name: "Aura Studio One",
     tagline: "Over-ear reference headphones",
     category: "Audio",
-    price: 329,
+    price: 899,
     rating: 4.9,
     reviews: 671,
     badge: "Editor's pick",
@@ -161,8 +161,8 @@ export const products: Product[] = [
     name: "Flux Pad Duo",
     tagline: "Magnetic desk charger with ambient glow",
     category: "Desk",
-    price: 89,
-    compareAt: 109,
+    price: 189,
+    compareAt: 229,
     rating: 4.4,
     reviews: 226,
     image: pad,
@@ -188,6 +188,8 @@ export const categories: Category[] = ["Audio", "Wearables", "Power", "Desk"];
 export const getProduct = (slug: string) => products.find((p) => p.slug === slug);
 
 export const formatPrice = (value: number) =>
-  new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(
-    value,
-  );
+  new Intl.NumberFormat("en-MY", { style: "currency", currency: "MYR", maximumFractionDigits: 0 })
+    .format(value)
+    .replace("MYR", "RM ")
+    .replace(/\u00a0/g, " ")
+    .trim();

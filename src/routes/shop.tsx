@@ -36,7 +36,7 @@ const sorts: { value: Sort; label: string }[] = [
 
 function Shop() {
   const [active, setActive] = useState<Category | "All">("All");
-  const [maxPrice, setMaxPrice] = useState(400);
+  const [maxPrice, setMaxPrice] = useState(1200);
   const [minRating, setMinRating] = useState(0);
   const [sort, setSort] = useState<Sort>("featured");
 
@@ -107,9 +107,9 @@ function Shop() {
               </div>
               <input
                 type="range"
-                min={80}
-                max={400}
-                step={10}
+                min={150}
+                max={1200}
+                step={50}
                 value={maxPrice}
                 onChange={(e) => setMaxPrice(Number(e.target.value))}
                 aria-label="Maximum price"

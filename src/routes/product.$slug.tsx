@@ -44,7 +44,7 @@ function ProductDetail() {
   const [gallery, setGallery] = useState(product.image);
 
   const related = products.filter((p) => p.slug !== product.slug).slice(0, 3);
-  const images = [product.image, product.altImage];
+  const images = [product.image];
 
   return (
     <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 sm:py-16">
@@ -179,7 +179,7 @@ function ProductDetail() {
 
           <div className="mt-8 grid gap-3 sm:grid-cols-2">
             {[
-              { icon: Truck, label: "Free 2-day shipping over $250" },
+              { icon: Truck, label: "Free 2-day shipping over RM 500" },
               { icon: ShieldCheck, label: "5-year parts guarantee" },
             ].map((f) => (
               <div
