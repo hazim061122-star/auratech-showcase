@@ -50,18 +50,10 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
                 loading="lazy"
                 width={1024}
                 height={1024}
-                className="absolute inset-0 h-full w-full object-cover transition-all duration-700 ease-out group-hover:scale-[1.06] group-hover:opacity-0"
-              />
-              <img
-                src={product.altImage}
-                alt=""
-                aria-hidden
-                loading="lazy"
-                width={1024}
-                height={1024}
-                className="absolute inset-0 h-full w-full scale-105 object-cover opacity-0 transition-all duration-700 ease-out group-hover:scale-100 group-hover:opacity-100"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.07]"
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/85 via-transparent to-transparent" />
+
               {product.badge && (
                 <span className="absolute left-4 top-4 rounded-full border border-primary/40 bg-background/70 px-3 py-1 text-[11px] font-medium tracking-wide text-primary backdrop-blur">
                   {product.badge}
