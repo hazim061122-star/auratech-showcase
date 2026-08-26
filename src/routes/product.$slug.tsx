@@ -1,13 +1,16 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { ArrowLeft, Check, Minus, Plus, ShieldCheck, Star, Truck } from "lucide-react";
+import { ArrowLeft, Check, Minus, Plus, ShieldCheck, Truck } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { Reveal } from "@/components/site/Reveal";
+import { Reviews } from "@/components/site/Reviews";
+import { StarRating } from "@/components/site/StarRating";
 import { Viewer360 } from "@/components/site/Viewer360";
 import { ProductCard } from "@/components/site/ProductCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { formatPrice, getProduct, products } from "@/lib/products";
 import { useCart } from "@/lib/cart";
+import { useProductReviews } from "@/lib/reviews";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/product/$slug")({
@@ -45,6 +48,7 @@ function ProductDetail() {
 function ProductDetailView() {
   const { product } = Route.useLoaderData();
   const { add } = useCart();
+  const { summary } = useProductReviews(product.slug);
   const [color, setColor] = useState(product.colors[0]!);
   const [qty, setQty] = useState(1);
   const [gallery, setGallery] = useState(product.image);
@@ -98,13 +102,11 @@ function ProductDetailView() {
           <p className="mt-3 text-base text-muted-foreground">{product.tagline}</p>
 
           <div className="mt-5 flex items-center gap-2 text-sm">
-            <span className="flex gap-0.5 text-primary">
-              {[...Array(5)].map((_, i) => (
-                <Star key={i} className="h-4 w-4 fill-primary" />
-              ))}
-            </span>
-            <span className="text-foreground">{product.rating}</span>
-            <span className="text-muted-foreground">· {product.reviews} reviews</span>
+            <StarRating value={summary.average} size={16} />
+            <span className="text-foreground">{summary.average.toFixed(1)}</span>
+            <a href="#reviews" className="text-muted-foreground transition-colors hover:text-primary">
+              · {summary.total} reviews
+            </a>
           </div>
 
           <div className="mt-7 flex items-baseline gap-3">
@@ -243,6 +245,8 @@ function ProductDetailView() {
           </TabsContent>
         </Tabs>
       </Reveal>
+
+      <Reviews slug={product.slug} productName={product.name} />
 
       {/* RELATED */}
       <section className="mt-24">
