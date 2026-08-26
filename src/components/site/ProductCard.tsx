@@ -1,16 +1,19 @@
 import { Link } from "@tanstack/react-router";
-import { Eye, Plus, Star } from "lucide-react";
+import { Eye, Plus } from "lucide-react";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { formatPrice, type Product } from "@/lib/products";
 import { useCart } from "@/lib/cart";
+import { useProductReviews } from "@/lib/reviews";
 import { QuickView } from "./QuickView";
+import { StarRating } from "./StarRating";
 
 export function ProductCard({ product, index = 0 }: { product: Product; index?: number }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
   const [quick, setQuick] = useState(false);
   const { add } = useCart();
+  const { summary } = useProductReviews(product.slug);
 
   const onMove = (e: React.MouseEvent) => {
     const el = cardRef.current;
@@ -83,9 +86,9 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
             </div>
 
             <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
-              <Star className="h-3.5 w-3.5 fill-primary text-primary" />
-              <span className="text-foreground">{product.rating}</span>
-              <span>· {product.reviews} reviews</span>
+              <StarRating value={summary.average} size={14} />
+              <span className="text-foreground">{summary.average.toFixed(1)}</span>
+              <span>· {summary.total} reviews</span>
             </div>
 
             <div className="flex gap-2 pt-1">
