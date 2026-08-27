@@ -88,7 +88,7 @@ function Watch() {
   const accent = useAccentMat();
 
   return (
-    <group rotation={[0, 0, 0]}>
+    <group scale={0.8}>
       <mesh material={body} castShadow receiveShadow>
         <boxGeometry args={[1.1, 1.35, 0.34]} />
       </mesh>
@@ -111,8 +111,8 @@ function Watch() {
           <mesh material={strap} position={[0, s * 1.0, 0]} castShadow>
             <boxGeometry args={[0.8, 0.7, 0.18]} />
           </mesh>
-          <mesh material={strap} position={[0, s * 1.62, -0.28]} rotation={[s * 0.6, 0, 0]} castShadow>
-            <boxGeometry args={[0.78, 0.75, 0.14]} />
+          <mesh material={strap} position={[0, s * 1.5, -0.22]} rotation={[s * 0.55, 0, 0]} castShadow>
+            <boxGeometry args={[0.78, 0.6, 0.14]} />
           </mesh>
         </group>
       ))}
@@ -206,10 +206,10 @@ function Headphones() {
   return (
     <group position={[0, -0.15, 0]}>
       {/* headband */}
-      <mesh material={body} position={[0, 0.55, 0]} rotation={[Math.PI / 2, 0, 0]} castShadow>
+      <mesh material={body} position={[0, 0.55, 0]} castShadow>
         <torusGeometry args={[0.95, 0.09, 20, 60, Math.PI]} />
       </mesh>
-      <mesh material={pad} position={[0, 0.62, 0]} rotation={[Math.PI / 2, 0, 0]}>
+      <mesh material={pad} position={[0, 0.6, 0]}>
         <torusGeometry args={[0.9, 0.055, 16, 48, Math.PI]} />
       </mesh>
       {[-1, 1].map((s) => (
@@ -217,18 +217,13 @@ function Headphones() {
           <mesh material={body} position={[0, 0.35, 0]} castShadow>
             <boxGeometry args={[0.12, 0.5, 0.16]} />
           </mesh>
-          <mesh
-            material={body}
-            rotation={[Math.PI / 2, 0, 0]}
-            castShadow
-            receiveShadow
-          >
+          <mesh material={body} rotation={[0, 0, Math.PI / 2]} castShadow receiveShadow>
             <cylinderGeometry args={[0.46, 0.46, 0.3, 48]} />
           </mesh>
-          <mesh material={pad} position={[0, 0, s * 0.001]} rotation={[Math.PI / 2, 0, 0]}>
-            <torusGeometry args={[0.4, 0.12, 16, 48]} />
+          <mesh material={pad} position={[-s * 0.16, 0, 0]} rotation={[0, Math.PI / 2, 0]}>
+            <torusGeometry args={[0.36, 0.12, 16, 48]} />
           </mesh>
-          <mesh material={accent} position={[s * 0.16, 0, 0]} rotation={[0, 0, Math.PI / 2]}>
+          <mesh material={accent} position={[s * 0.16, 0, 0]} rotation={[0, Math.PI / 2, 0]}>
             <torusGeometry args={[0.3, 0.018, 10, 48]} />
           </mesh>
         </group>
