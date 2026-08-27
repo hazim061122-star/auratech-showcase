@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { Reveal } from "@/components/site/Reveal";
 import { Reviews } from "@/components/site/Reviews";
 import { StarRating } from "@/components/site/StarRating";
-import { Viewer360 } from "@/components/site/Viewer360";
+import { Viewer3D } from "@/components/site/Viewer3D";
 import { ProductCard } from "@/components/site/ProductCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { formatPrice, getProduct, products } from "@/lib/products";
@@ -68,7 +68,7 @@ function ProductDetailView() {
 
       <div className="mt-8 grid gap-12 lg:grid-cols-[1.05fr_0.95fr]">
         <Reveal>
-          <Viewer360 image={gallery} alt={product.name} />
+          <Viewer3D kind={product.model} name={product.name} />
           <div className="mt-4 flex gap-3">
             {images.map((img, i) => (
               <button
