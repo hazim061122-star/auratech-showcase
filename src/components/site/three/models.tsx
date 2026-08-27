@@ -1,3 +1,4 @@
+import type React from "react";
 import { useMemo } from "react";
 import * as THREE from "three";
 
@@ -126,7 +127,7 @@ function Speaker() {
   const accent = useAccentMat(PURPLE);
 
   const grille = useMemo(() => {
-    const rows: JSX.Element[] = [];
+    const rows: React.ReactElement[] = [];
     const count = 44;
     for (let i = 0; i < count; i++) {
       const a = (i / count) * Math.PI * 2;
@@ -263,7 +264,7 @@ function Pad() {
   );
 }
 
-export const MODELS: Record<ModelKind, () => JSX.Element> = {
+export const MODELS: Record<ModelKind, () => React.ReactElement> = {
   earbuds: Earbuds,
   watch: Watch,
   speaker: Speaker,
