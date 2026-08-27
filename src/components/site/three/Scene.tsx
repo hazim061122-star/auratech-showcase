@@ -14,7 +14,7 @@ function Spinner({ kind, paused }: { kind: ModelKind; paused: boolean }) {
   });
 
   return (
-    <group ref={ref}>
+    <group ref={ref} scale={0.9}>
       <Model />
     </group>
   );
@@ -27,18 +27,18 @@ export default function Scene({ kind }: { kind: ModelKind }) {
     <Canvas
       shadows
       dpr={[1, 1.8]}
-      camera={{ position: [2.6, 1.5, 3.4], fov: 38 }}
+      camera={{ position: [2.4, 1.3, 5.2], fov: 34 }}
       gl={{ antialias: true, alpha: true }}
       onPointerDown={() => setPaused(true)}
       onPointerUp={() => setPaused(false)}
       onPointerLeave={() => setPaused(false)}
     >
       <Suspense fallback={null}>
-        <ambientLight intensity={0.35} />
+        <ambientLight intensity={0.75} />
         {/* soft key light */}
         <directionalLight
           position={[3.5, 5, 3]}
-          intensity={2.1}
+          intensity={2.6}
           castShadow
           shadow-mapSize={[1024, 1024]}
         />
