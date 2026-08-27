@@ -5,6 +5,14 @@ import charger from "@/assets/p-charger.jpg";
 import headphones from "@/assets/p-headphones.jpg";
 import pad from "@/assets/p-pad.jpg";
 
+export type ModelKind =
+  | "earbuds"
+  | "watch"
+  | "speaker"
+  | "powerbank"
+  | "headphones"
+  | "pad";
+
 export type Category = "Audio" | "Wearables" | "Power" | "Desk";
 
 export type Product = {
@@ -12,6 +20,7 @@ export type Product = {
   name: string;
   tagline: string;
   category: Category;
+  model: ModelKind;
   price: number;
   compareAt?: number;
   rating: number;
@@ -32,6 +41,7 @@ export const products: Product[] = [
     name: "Pulse Air Pro",
     tagline: "Adaptive ANC earbuds with spatial audio",
     category: "Audio",
+    model: "earbuds",
     price: 549,
     compareAt: 649,
     rating: 4.8,
@@ -62,6 +72,7 @@ export const products: Product[] = [
     name: "Chrono X1",
     tagline: "Titanium smartwatch with always-on AMOLED",
     category: "Wearables",
+    model: "watch",
     price: 1099,
     rating: 4.7,
     reviews: 842,
@@ -87,6 +98,7 @@ export const products: Product[] = [
     name: "Sonic Drum 360",
     tagline: "Omnidirectional speaker with reactive light ring",
     category: "Audio",
+    model: "speaker",
     price: 349,
     compareAt: 429,
     rating: 4.6,
@@ -112,6 +124,7 @@ export const products: Product[] = [
     name: "Voltcore 140",
     tagline: "140W GaN power bank for laptops and phones",
     category: "Power",
+    model: "powerbank",
     price: 299,
     rating: 4.5,
     reviews: 393,
@@ -136,6 +149,7 @@ export const products: Product[] = [
     name: "Aura Studio One",
     tagline: "Over-ear reference headphones",
     category: "Audio",
+    model: "headphones",
     price: 899,
     rating: 4.9,
     reviews: 671,
@@ -161,6 +175,7 @@ export const products: Product[] = [
     name: "Flux Pad Duo",
     tagline: "Magnetic desk charger with ambient glow",
     category: "Desk",
+    model: "pad",
     price: 189,
     compareAt: 229,
     rating: 4.4,
