@@ -1,4 +1,4 @@
-import { ContactShadows, Environment, OrbitControls } from "@react-three/drei";
+import { ContactShadows, OrbitControls } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Suspense, useRef, useState } from "react";
 import type { Group } from "three";
@@ -57,7 +57,6 @@ export default function Scene({ kind }: { kind: ModelKind }) {
           far={4}
           color="#000000"
         />
-        <Environment preset="city" />
         <OrbitControls
           enablePan={false}
           enableZoom={false}
