@@ -6,7 +6,7 @@ export function Reveal({
   children,
   delay = 0,
   className,
-  as: Tag = "div",
+  as: TagProp = "div",
 }: {
   children: ReactNode;
   delay?: number;
@@ -14,6 +14,7 @@ export function Reveal({
   as?: ElementType;
 }) {
   const { ref, visible } = useReveal<HTMLDivElement>();
+  const Tag = TagProp as "div";
   return (
     <Tag
       ref={ref}
