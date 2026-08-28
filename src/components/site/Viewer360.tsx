@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 type Props = {
   image: string;
   name: string;
-  badge?: string;
+  badge?: string | undefined;
 };
 
 /**
