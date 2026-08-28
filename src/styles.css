@@ -271,3 +271,8 @@
     transition-duration: 0.001ms !important;
   }
 }
+
+@keyframes spin-slow {
+  from { transform: rotateY(0deg) rotateX(2deg); }
+  to { transform: rotateY(360deg) rotateX(2deg); }
+}
