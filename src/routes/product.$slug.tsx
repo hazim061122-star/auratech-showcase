@@ -5,7 +5,7 @@ import { toast } from "sonner";
 import { Reveal } from "@/components/site/Reveal";
 import { Reviews } from "@/components/site/Reviews";
 import { StarRating } from "@/components/site/StarRating";
-import { Viewer3D } from "@/components/site/Viewer3D";
+import { Viewer360 } from "@/components/site/Viewer360";
 import { ProductCard } from "@/components/site/ProductCard";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { formatPrice, getProduct, products } from "@/lib/products";
@@ -66,7 +66,7 @@ function ProductDetailView() {
 
       <div className="mt-8 grid gap-12 lg:grid-cols-[1.05fr_0.95fr]">
         <Reveal>
-          <Viewer3D kind={product.model} name={product.name} />
+          <Viewer360 image={product.image} name={product.name} badge={product.badge} />
         </Reveal>
 
         <Reveal delay={120}>
