@@ -66,7 +66,7 @@ function ProductDetailView() {
 
       <div className="mt-8 grid gap-12 lg:grid-cols-[1.05fr_0.95fr]">
         <Reveal>
-          <Viewer3D kind={product.model} name={product.name} />
+          <Viewer360 image={product.image} name={product.name} badge={product.badge} />
         </Reveal>
 
         <Reveal delay={120}>
