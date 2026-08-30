@@ -1,10 +1,12 @@
 import { Link } from "@tanstack/react-router";
-import { Eye, Plus } from "lucide-react";
+import { Check, Eye, GitCompare, Plus } from "lucide-react";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { formatPrice, type Product } from "@/lib/products";
 import { useCart } from "@/lib/cart";
 import { useProductReviews } from "@/lib/reviews";
+import { MAX_COMPARE, useCompare } from "@/lib/compare";
+import { cn } from "@/lib/utils";
 import { QuickView } from "./QuickView";
 import { StarRating } from "./StarRating";
 
@@ -14,6 +16,8 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
   const [quick, setQuick] = useState(false);
   const { add } = useCart();
   const { summary } = useProductReviews(product.slug);
+  const { has, toggle } = useCompare();
+  const selected = has(product.slug);
 
   const onMove = (e: React.MouseEvent) => {
     const el = cardRef.current;
