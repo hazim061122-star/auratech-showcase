@@ -1,10 +1,12 @@
 import { Link } from "@tanstack/react-router";
-import { Eye, Plus } from "lucide-react";
+import { Check, Eye, GitCompare, Plus } from "lucide-react";
 import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { formatPrice, type Product } from "@/lib/products";
 import { useCart } from "@/lib/cart";
 import { useProductReviews } from "@/lib/reviews";
+import { MAX_COMPARE, useCompare } from "@/lib/compare";
+import { cn } from "@/lib/utils";
 import { QuickView } from "./QuickView";
 import { StarRating } from "./StarRating";
 
@@ -14,6 +16,8 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
   const [quick, setQuick] = useState(false);
   const { add } = useCart();
   const { summary } = useProductReviews(product.slug);
+  const { has, toggle } = useCompare();
+  const selected = has(product.slug);
 
   const onMove = (e: React.MouseEvent) => {
     const el = cardRef.current;
@@ -64,6 +68,26 @@ export function ProductCard({ product, index = 0 }: { product: Product; index?: 
               )}
             </div>
           </Link>
+
+          <button
+            type="button"
+            aria-pressed={selected}
+            aria-label={selected ? `Remove ${product.name} from compare` : `Add ${product.name} to compare`}
+            title="Compare"
+            onClick={() => {
+              const ok = toggle(product.slug);
+              if (!ok) toast.error(`You can compare up to ${MAX_COMPARE} products`);
+              else if (!selected) toast.success(`${product.name} added to compare`);
+            }}
+            className={cn(
+              "absolute right-4 top-4 z-10 grid h-9 w-9 place-items-center rounded-full border backdrop-blur transition-all duration-300 active:scale-95",
+              selected
+                ? "border-primary bg-primary text-primary-foreground"
+                : "border-border bg-background/70 text-muted-foreground hover:border-primary/60 hover:text-primary",
+            )}
+          >
+            {selected ? <Check className="h-4 w-4" /> : <GitCompare className="h-4 w-4" />}
+          </button>
 
           <div className="relative space-y-3 p-5">
             <div className="flex items-start justify-between gap-3">

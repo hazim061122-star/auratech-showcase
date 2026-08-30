@@ -2,6 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { Menu, ShoppingBag, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { Logo } from "./Logo";
+import { SearchBar } from "./SearchBar";
 import { useCart } from "@/lib/cart";
 import { cn } from "@/lib/utils";
 
@@ -67,6 +68,7 @@ export function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <SearchBar />
           <Link
             to="/cart"
             aria-label={`Cart, ${count} items`}

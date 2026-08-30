@@ -91,7 +91,7 @@ function Home() {
               </span>
             </Reveal>
             <Reveal delay={100}>
-              <h1 className="mt-7 font-display text-5xl font-bold leading-[0.95] sm:text-6xl lg:text-7xl">
+              <h1 className="mt-7 font-display text-5xl font-bold leading-[0.95] text-foreground drop-shadow-[0_0_28px_oklch(0.7_0.15_220/0.35)] sm:text-6xl lg:text-7xl">
                 Gadgets that feel <span className="text-gradient">inevitable</span>.
               </h1>
             </Reveal>
@@ -107,15 +107,14 @@ function Home() {
                   to="/shop"
                   className="group inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3.5 text-sm font-medium text-primary-foreground transition-all duration-300 hover:brightness-110 active:scale-95"
                 >
-                  Explore the range
+                  Shop Now
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Link>
                 <Link
-                  to="/product/$slug"
-                  params={{ slug: "pulse-air-pro" }}
-                  className="inline-flex items-center gap-2 rounded-full border border-border px-7 py-3.5 text-sm text-foreground transition-all duration-300 hover:border-primary/60 hover:text-primary"
+                  to="/shop"
+                  className="inline-flex items-center gap-2 rounded-full border border-border bg-background/40 px-7 py-3.5 text-sm text-foreground backdrop-blur transition-all duration-300 hover:border-primary/60 hover:text-primary"
                 >
-                  Rotate the Pulse Air Pro
+                  Explore the range
                 </Link>
               </div>
             </Reveal>
@@ -137,7 +136,8 @@ function Home() {
 
           <Reveal delay={200} className="relative">
             <div className="relative mx-auto aspect-square w-full max-w-md">
-              <div className="absolute inset-6 rounded-full bg-primary/20 blur-3xl" />
+              <div className="absolute inset-4 rounded-full bg-primary/25 blur-3xl" />
+              <div className="absolute -right-2 bottom-8 h-40 w-40 rounded-full bg-accent/25 blur-3xl" />
               <img
                 src={products[0]!.image}
                 alt="Pulse Air Pro wireless earbuds"
@@ -145,6 +145,15 @@ function Home() {
                 height={1024}
                 className="relative h-full w-full animate-float rounded-[2rem] object-cover glow-ring"
               />
+              <div className="surface-panel absolute -left-4 bottom-10 flex animate-float items-center gap-3 rounded-2xl px-4 py-3 backdrop-blur-xl [animation-delay:600ms]">
+                <span className="grid h-9 w-9 place-items-center rounded-xl bg-primary/15 text-primary">
+                  <Star className="h-4 w-4 fill-current" />
+                </span>
+                <span>
+                  <span className="block text-sm font-semibold text-foreground">4.8 / 5</span>
+                  <span className="block text-[11px] text-muted-foreground">2,400+ reviews</span>
+                </span>
+              </div>
             </div>
           </Reveal>
         </div>
@@ -163,7 +172,7 @@ function Home() {
                 ].map((t) => (
                   <span
                     key={t + dup}
-                    className="eyebrow whitespace-nowrap text-muted-foreground/80"
+                    className="eyebrow whitespace-nowrap text-foreground/90"
                   >
                     {t}
                   </span>
