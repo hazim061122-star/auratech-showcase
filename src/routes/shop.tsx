@@ -1,5 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { SlidersHorizontal } from "lucide-react";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { SlidersHorizontal, X } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Reveal } from "@/components/site/Reveal";
 import { ProductCard } from "@/components/site/ProductCard";
@@ -7,6 +7,10 @@ import { categories, formatPrice, products, type Category } from "@/lib/products
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/shop")({
+  validateSearch: (search: Record<string, unknown>): { q?: string } => {
+    const q = typeof search["q"] === "string" ? search["q"].trim() : "";
+    return q ? { q } : {};
+  },
   head: () => ({
     meta: [
       { title: "Shop All Gadgets — Novexa" },
@@ -35,6 +39,9 @@ const sorts: { value: Sort; label: string }[] = [
 ];
 
 function Shop() {
+  const { q } = Route.useSearch();
+  const navigate = useNavigate({ from: "/shop" });
+  const query = (q ?? "").trim().toLowerCase();
   const [active, setActive] = useState<Category | "All">("All");
   const [maxPrice, setMaxPrice] = useState(1200);
   const [minRating, setMinRating] = useState(0);
@@ -45,7 +52,11 @@ function Shop() {
       (p) =>
         (active === "All" || p.category === active) &&
         p.price <= maxPrice &&
-        p.rating >= minRating,
+        p.rating >= minRating &&
+        (!query ||
+          p.name.toLowerCase().includes(query) ||
+          p.category.toLowerCase().includes(query) ||
+          p.tagline.toLowerCase().includes(query)),
     );
     switch (sort) {
       case "price-asc":
@@ -57,7 +68,7 @@ function Shop() {
       default:
         return list;
     }
-  }, [active, maxPrice, minRating, sort]);
+  }, [active, maxPrice, minRating, sort, query]);
 
   return (
     <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 sm:py-20">
@@ -70,6 +81,19 @@ function Shop() {
           Six products, no filler. Filter by category, price and rating to find the one that fits
           your setup.
         </p>
+        {q && (
+          <div className="mt-6 inline-flex items-center gap-2 rounded-full border border-primary/40 bg-primary/10 px-4 py-2 text-xs text-primary">
+            Search results for “{q}”
+            <button
+              type="button"
+              aria-label="Clear search"
+              onClick={() => navigate({ search: {} })}
+              className="grid h-5 w-5 place-items-center rounded-full transition-colors hover:bg-primary/20"
+            >
+              <X className="h-3 w-3" />
+            </button>
+          </div>
+        )}
       </Reveal>
 
       <div className="mt-12 grid gap-10 lg:grid-cols-[260px_1fr]">
